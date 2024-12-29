@@ -1,0 +1,245 @@
+<div class="flex flex-col h-screen w-[100vw]">
+  <header class="p-2 header">
+    <div class="flex gap-4 items-left">
+      <i class="mt-2 ml-8 fa-solid fa-house icon-large"></i>
+      <img src="ezuite1.png" alt="eZuite Logo" class="logo" />
+    </div>
+
+    <div class="flex items-center gap-4 user-info">
+      <i class="fas fa-user-shield"></i>
+      <p>Admin > User</p>
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-plus"></i>
+    </div>
+    <div class="flex items-center gap-4 mr-4">
+      <p>Enhancer</p>
+      <p
+        class="pt-2 pb-1 pl-3 pr-3 font-bold text-blue-400 bg-white rounded-full"
+      >
+        L
+      </p>
+      <i class="fa-solid fa-bell"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-solid fa-gear"></i>
+    </div>
+  </header>
+
+  <div class="container-body">
+    <nav class="sidebar">
+      <ul class="flex flex-col text-white">
+        <li class="flex flex-col items-center">
+          <i class="fas fa-user-shield"></i>
+          Admin
+        </li>
+        <li class="flex flex-col items-center">
+          <i class="fas fa-cogs"></i>
+          <p>Core</p>
+        </li>
+        <li class="flex flex-col items-center">
+          <i class="fas fa-shopping-cart"></i>
+          <p>Procurement</p>
+        </li>
+        <li class="flex flex-col items-center">
+          <i class="fas fa-warehouse"></i>
+          <p>Inventory</p>
+        </li>
+        <li class="flex flex-col items-center">
+          <i class="fas fa-industry"></i>
+          <p>Manufacture</p>
+        </li>
+        <li class="flex flex-col items-center">
+          <i class="fas fa-chart-line"></i>
+          <p>Sales</p>
+        </li>
+        <li class="flex flex-col items-center">
+          <i class="fas fa-dollar-sign"></i>
+          <p>Finance</p>
+        </li>
+        <li class="flex flex-col items-center">
+          <i class="fas fa-building"></i>
+          <p>Assets</p>
+        </li>
+        <li class="flex flex-col items-center">
+          <i class="fas fa-tools"></i>
+          <p>Services</p>
+        </li>
+        <li class="flex flex-col items-center">
+          <i class="fas fa-users"></i>
+          <p>CRM</p>
+        </li>
+        <li class="flex flex-col items-center">
+          <i class="fas fa-chart-bar"></i>
+          <p>Analytics</p>
+        </li>
+      </ul>
+    </nav>
+
+    <main class="mt-8 bg-gray-100 main-content">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2">
+            <i
+              class="p-1 border border-black rounded-md fa-regular fa-clipboard"
+            ></i>
+            <p>Drafts</p>
+            <p class="border border-black rounded-3xl p-[2px]">40</p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <i
+              class="p-1 border border-black rounded-md fa-solid fa-chart-bar"
+            ></i>
+            <p>Active</p>
+            <p class="border border-black rounded-3xl p-[2px]">40</p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <i
+              class="p-1 border border-black rounded-md fa-regular fa-square"
+            ></i>
+            <p>Inactive</p>
+            <p class="border border-black rounded-3xl p-[2px]">40</p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <i class="p-1 border border-black rounded-md fa-solid fa-x"></i>
+            <p>Deleted</p>
+            <p class="border border-black rounded-3xl p-[2px]">40</p>
+          </div>
+        </div>
+
+        <div class="flex items-center">
+          <div
+            class="flex items-center mt-5 border-b border-black mr search-bar"
+          >
+            <i class="fa-solid fa-filter"></i>
+            <input
+              type="text"
+              placeholder="Search"
+              [(ngModel)]="searchQuery"
+              (input)="filterUsers()"
+              class="no-outline"
+              style="border: none"
+            />
+          </div>
+
+          <!-- Pagination -->
+          <mat-paginator
+            showFirstLastButtons
+            aria-label="User Table Pagination"
+          >
+          </mat-paginator>
+        </div>
+
+        <!-- Horizontal 3-dot -->
+        <i class="mr-8 fas fa-ellipsis-h"></i>
+      </div>
+
+      <div class="table-div mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+          
+          <!-- First Name Column -->
+          <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef>First Name</th>
+            <td mat-cell *matCellDef="let user">{{ user.firstName }}</td>
+          </ng-container>
+
+          <!-- Last Name Column -->
+          <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef>Last Name</th>
+            <td mat-cell *matCellDef="let user">{{ user.lastName }}</td>
+          </ng-container>
+
+          <!-- Address Column -->
+          <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef>Address</th>
+            <td mat-cell *matCellDef="let user">{{ user.address }}</td>
+          </ng-container>
+
+          <!-- Mobile Column -->
+          <ng-container matColumnDef="mobile">
+            <th mat-header-cell *matHeaderCellDef>Mobile</th>
+            <td mat-cell *matCellDef="let user">{{ user.mobile }}</td>
+          </ng-container>
+
+          <!-- Email Column -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+          </ng-container>
+
+          <!-- Department Column -->
+          <ng-container matColumnDef="department">
+            <th mat-header-cell *matHeaderCellDef>Department</th>
+            <td mat-cell *matCellDef="let user">{{ user.department }}</td>
+          </ng-container>
+
+          <!-- Designation Column -->
+          <ng-container matColumnDef="designation">
+            <th mat-header-cell *matHeaderCellDef>Designation</th>
+            <td mat-cell *matCellDef="let user">{{ user.designation }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="updated">
+            <th mat-header-cell *matHeaderCellDef>Updated</th>
+            <td mat-cell *matCellDef="let user">
+              <div class="flex items-center">
+                <!-- Circle with first name's initial -->
+                <p
+                  style="
+                    border: 1px solid blue;
+                    border-radius: 50%;
+                    background-color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 40px;
+                    height: 40px;
+                    margin-right: 10px;
+                  "
+                >
+                  {{ user.firstName.charAt(0) }}
+                </p>
+                <!-- Display date and time in column format -->
+                <div style="display: flex; flex-direction: column">
+                  <div>{{ user.updated.split(" ")[0] }}</div>
+                  <div>{{ user.updated.split(" ")[1] }}</div>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+          <!-- Number Column -->
+          <ng-container matColumnDef="number">
+            <th mat-header-cell *matHeaderCellDef>Number</th>
+            <td mat-cell *matCellDef="let user">{{ user.number }}</td>
+          </ng-container>
+
+          <!-- Table Header and Row Definitions -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+
+      <!-- <img src="tcms.jpg" alt="hhhhh" /> -->
+
+      <footer class="footer">
+        <div class="flex items-center justify-between p-2 bg-gray-100 border-t">
+          <span class="absolute w-2 h-2 rounded-full bg-slate-100"></span>
+          
+          <!-- Left content -->
+          <div class="flex items-center gap-2">
+            <i class="text-sm text-gray-600 rounded-full fa-solid fa-star"></i>
+            <span class="text-sm text-gray-600">5.0</span>
+          </div>
+
+          <!-- Right content -->
+          <div class="flex items-center gap-2">
+            <p class="text-sm text-gray-60">
+              &copy; 2024 eZuite. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+</div>
